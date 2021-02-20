@@ -1,0 +1,28 @@
+{
+    "codigo": 200,
+    "descripcion": "OK",
+    "mensaje": "Transacción exitosa",
+    "objeto": {
+      "cod_empresa": 1,
+      "nombre_empresa": "ide",
+      "url_logo": "imagen.png",
+      "cod_usuario": 1,
+      "cod_perfil": 1,
+      "sucursales": [
+        {
+          "id": 1,
+          "nombre": "chiclayo"
+        },
+        {
+          "id": 2,
+          "nombre": "piura"
+        }
+      ],
+      "nombres": "juan",
+      "apellido_paterno": "juan",
+      "apellido_materno": "juan",
+      "documento": "11111111",
+      "cuenta": "administrador@empresa.com",
+      "id_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhZG1pbmlzdHJhZG9yQGVtcHJlc2EuY29tIiwibmJmIjoxNjEzNTc2MzUzLCJleHAiOjE2MTM1NzgxNTMsImlhdCI6MTYxMzU3NjM1M30.0nI-2aRRokOJhw0BQjaF9QyHutrRHoXeb5SP62_DEoE"
+    }
+  }

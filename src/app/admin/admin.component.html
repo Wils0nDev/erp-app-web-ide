@@ -1,0 +1,59 @@
+<ng-container >
+    <mat-toolbar color="primary" class="example-header">
+        <span class="logo">LOGO</span>
+
+
+        <mat-form-field appearance="fill" class="select-toolbar">
+            <mat-select   [(value)]="sucursal[0].idSucursal" >
+              <mat-option *ngFor="let s of sucursal" [value]="s.idSucursal" >{{s.razonSocial}}</mat-option>              
+            </mat-select>
+        </mat-form-field>
+        <button mat-icon-button [matMenuTriggerFor]="Matmenu" class="menu-toolbar">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu #Matmenu>
+            
+
+            
+            <button mat-menu-item [routerLink]="['/','login']">
+              Perfil
+            </button>
+            <button mat-menu-item (click)='cerrarSesion()'>
+              Cerrar sesión
+            </button>
+    
+          </mat-menu>
+    </mat-toolbar>
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" opened class="example-sidenav"
+                 [fixedInViewport]="false" [fixedTopGap]="0"
+                 [fixedBottomGap]="0">
+                 <mat-nav-list dense *ngFor="let m of modulos">
+                    <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+                      <mat-expansion-panel-header>
+                          {{m.nombre}}
+                      </mat-expansion-panel-header>
+                      <mat-nav-list dense *ngFor="let subm of m.submodulos">
+                          <a mat-list-item routerLink="#"><mat-icon>attach_money</mat-icon>{{subm.nombre}}</a>
+                      </mat-nav-list>
+                  </mat-expansion-panel>
+                 </mat-nav-list>
+     
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+     
+      <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+    </mat-sidenav-content>
+    
+    </mat-sidenav-container>
+  
+  <mat-toolbar  class="footer">
+    <span></span>
+    <span> © Copyright 2021 IDE SOLUTION </span>
+    <span></span>
+  </mat-toolbar>
+  </ng-container>
+  
+  

@@ -1,0 +1,35 @@
+{
+    "codigo": 200,
+    "descripcion": "OK",
+    "mensaje": "Transacción exitosa",
+    "objeto": [
+      {
+        "idModulo": 1,
+        "nombre": "VENTAS",
+        "submodulos": [
+          {
+            "id": 1,
+            "nombre": "facturacion"
+          },
+          {
+            "id": 2,
+            "nombre": "preventa"
+          }
+        ]
+      },
+      {
+        "idModulo": 2,
+        "nombre": "COMPRAS",
+        "submodulos": [
+          {
+            "id": 1,
+            "nombre": "a"
+          },
+          {
+            "id": 2,
+            "nombre": "b"
+          }
+        ]
+      }
+    ]
+  }

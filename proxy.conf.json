@@ -1,0 +1,7 @@
+{
+    "/administracion/*" : {
+        "target" : "http://172.16.11.123:4200/",
+        "secure" : false,
+        "logLevel" : "debug"
+    }
+}
