@@ -6,6 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,20 +14,26 @@ import { catchError } from 'rxjs/operators';
 export class ModuloService {
 
   public datos! : any
-  constructor(private httpClient: HttpClient) { }
+
+  constructor(private httpClient: HttpClient,private userService : UserService) { }
 
 
   getModulos(perfil: number , userid : number): Observable<any> {
    
-    //let json = JSON.stringify();
-    //let params = json;
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json'});
+    
+    
+    let headers = new HttpHeaders({ 
+      'Content-Type': 'application/json',
+      'Authorization': JSON.parse(this.userService.getToken() || '')
+    
+    });
+
 
     return this.httpClient
     //http://172.16.11.123:4200/administracion/login/ValidarCredenciales
     //.post<User>('assets/api/user/login.json', params,{ headers: headers})
-
-      .get<any>('assets/api/modulos/modulo.json')
+      .get<any>(`http://172.16.11.123:4040/module/AccesosModulos/${perfil}/${userid}`,
+      { headers : headers})
       .pipe(catchError(this.mensajeError));
   }
 
@@ -53,4 +60,6 @@ export class ModuloService {
     }
     return this.datos;
   }
+
+ 
 }

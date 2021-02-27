@@ -1,4 +1,4 @@
 export class Modulo {
 
-    constructor(public id : number, public nombre : string, public submodulos : Array<any>) {}
+    constructor(public id : number, public nombreModulo : string, public urlModulo : string, public subModulos : Array<any>) {}
 }

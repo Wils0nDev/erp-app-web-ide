@@ -15,7 +15,7 @@
         <mat-menu #Matmenu>
             
 
-            
+          
             <button mat-menu-item [routerLink]="['/','login']">
               Perfil
             </button>
@@ -29,13 +29,17 @@
     <mat-sidenav #sidenav mode="side" opened class="example-sidenav"
                  [fixedInViewport]="false" [fixedTopGap]="0"
                  [fixedBottomGap]="0">
+
                  <mat-nav-list dense *ngFor="let m of modulos">
                     <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
                       <mat-expansion-panel-header>
-                          {{m.nombre}}
+                          {{m.nombreModulo}}
+                          
                       </mat-expansion-panel-header>
-                      <mat-nav-list dense *ngFor="let subm of m.submodulos">
-                          <a mat-list-item routerLink="#"><mat-icon>attach_money</mat-icon>{{subm.nombre}}</a>
+                      
+                      <mat-nav-list dense *ngFor="let subm of m.subModulos">
+                        
+                          <a mat-list-item routerLink="{{m.urlModulo | lowercase}}/{{subm.urlSubmodulo | lowercase }}"><mat-icon>attach_money</mat-icon>{{subm.nombreSubmodulo}}</a>
                       </mat-nav-list>
                   </mat-expansion-panel>
                  </mat-nav-list>
@@ -43,8 +47,11 @@
     </mat-sidenav>
   
     <mat-sidenav-content>
-     
-      <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+      <div>
+
+        <router-outlet></router-outlet>
+      </div>
+      <!--p><button mat-button (click)="sidenav.toggle()">Toggle</button></p-->
     </mat-sidenav-content>
     
     </mat-sidenav-container>

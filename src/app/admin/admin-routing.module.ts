@@ -5,9 +5,18 @@ import { AdminComponent } from './admin.component';
 const routes: Routes = [
   {
     path: '',
-    component : AdminComponent
+    component : AdminComponent,
+    children:[
+      
+      {
+        path: 'sales',
+        loadChildren: () => import('../ventas/ventas.module').then(m => m.VentasModule)
+      }  
+    ]
    
-  }
+  },
+      
+  
 ];
 
 @NgModule({

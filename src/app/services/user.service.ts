@@ -28,7 +28,7 @@ export class UserService {
     return this.httpClient
 
       //http://172.16.11.123:4200/administracion/login/ValidarCredenciales
-      .post<User>('http://172.16.11.123:4200/administracion/login/ValidarCredenciales', params,{ headers: headers})
+      .post<User>('http://172.16.11.123:4040/user/ValidarCredenciales', params,{ headers: headers})
 
       //.get<any>('assets/api/user/login.json')
       .pipe(catchError(this.mensajeError));
