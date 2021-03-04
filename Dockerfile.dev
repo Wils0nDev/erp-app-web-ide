@@ -1,0 +1,20 @@
+#Docker para hambiente de desarrollo
+#Primera capa llamo a la imagen de node 
+FROM node:15.10.0-alpine as build-stage
+
+#donde se trabajara el app
+WORKDIR /app
+
+#añado el bin a path
+ENV PATH /app/node_modules/.bin:$PATH
+
+#copiamos el package.json que tendra nuestras dependencias
+COPY package.json /app/package.json
+RUN npm install
+RUN npm install -g @angular/cli@11.2.1
+
+# add apps
+COPY . /app/
+
+# start app
+CMD ng serve --host 0.0.0.0

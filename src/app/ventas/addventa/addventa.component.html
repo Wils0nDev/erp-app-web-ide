@@ -1,14 +1,13 @@
-<form class="example-form">
+<form class="example-form" [formGroup]="addVenta" (ngSubmit)="onSubmit()" (keydown.enter)="$event.preventDefault()">
   <mat-grid-list cols="1" rowHeight="40px">
     <mat-grid-tile
       [colspan]="1"
       [rowspan]="1"
       [style.background-color]="'#ccc'"
     >
-    <div class="title">
+      <div class="title">
         <h4>Agregar venta</h4>
-    </div>
-  
+      </div>
     </mat-grid-tile>
   </mat-grid-list>
   <mat-grid-list cols="2" rowHeight="100px">
@@ -19,7 +18,17 @@
     >
       <mat-form-field appearance="fill">
         <mat-label>Fecha</mat-label>
-        <input matInput [matDatepicker]="picker" />
+        <input
+          matInput
+          [matDatepicker]="picker"
+          id="fechaCreacion"
+          formControlName="fechaCreacion"
+        />
+        <mat-error
+          *ngIf="addVenta.controls['fechaCreacion'].hasError('required')"
+        >
+          La fecha es <strong>requerida</strong>
+        </mat-error>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -43,30 +52,31 @@
     </mat-grid-tile>
   </mat-grid-list>
   <mat-grid-list cols="1" rowHeight="40px">
-    <mat-grid-tile
-      [colspan]="1"
-      [rowspan]="1"
-      class="sub-title "
-    >
-    <div class="title">
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="sub-title">
+      <div class="title">
         <h4>Cliente</h4>
-    </div>
+      </div>
     </mat-grid-tile>
-    
   </mat-grid-list>
-  <hr>
+  <hr />
   <mat-grid-list cols="5" rowHeight="100px">
     <mat-grid-tile
       [colspan]="1"
       [rowspan]="1"
       [style.background-color]="'#FFF'"
     >
-      <mat-form-field appearance="fill">
+      <mat-form-field>
         <mat-label>Tipo</mat-label>
-        <mat-select name="food">
-          <mat-option value="dni"> DNI </mat-option>
-          <mat-option value="ruc"> RUC </mat-option>
+        <mat-select id="tipoDocumento" formControlName="tipoDocumento">
+          <mat-option [value]="1"> DNI </mat-option>
+          <mat-option [value]="2"> RUC </mat-option>
         </mat-select>
+
+        <mat-error
+          *ngIf="addVenta.controls['tipoDocumento'].hasError('required')"
+        >
+          El tipo de documento es <strong>requerido</strong>
+        </mat-error>
       </mat-form-field>
     </mat-grid-tile>
 
@@ -78,7 +88,17 @@
       <mat-form-field class="example-full-width">
         <mat-label>DNI/RUC</mat-label>
 
-        <input matInput placeholder="dni/ruc" value="" />
+        <input
+          matInput
+          placeholder="dni/ruc"
+          id="numeroDocumento"
+          formControlName="numeroDocumento"
+        />
+        <mat-error
+          *ngIf="addVenta.controls['numeroDocumento'].hasError('required')"
+        >
+          El numero de documento es <strong>requerido</strong>
+        </mat-error>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile
@@ -89,7 +109,15 @@
       <mat-form-field class="example-full-width">
         <mat-label>Nombres</mat-label>
 
-        <input matInput placeholder="nombres" value="" />
+        <input
+          matInput
+          placeholder="nombres"
+          id="nombres"
+          formControlName="nombres"
+        />
+        <mat-error *ngIf="addVenta.controls['nombres'].hasError('required')">
+          El nombre es <strong>requerido</strong>
+        </mat-error>
       </mat-form-field>
     </mat-grid-tile>
 
@@ -101,7 +129,17 @@
       <mat-form-field class="example-full-width">
         <mat-label>Apellido paterno</mat-label>
 
-        <input matInput placeholder="Apellido paterno" value="" />
+        <input
+          matInput
+          placeholder="Apellido paterno"
+          id="apellidoPaterno"
+          formControlName="apellidoPaterno"
+        />
+        <mat-error
+          *ngIf="addVenta.controls['apellidoPaterno'].hasError('required')"
+        >
+          El apellido paterno <strong>requerido</strong>
+        </mat-error>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile
@@ -112,32 +150,47 @@
       <mat-form-field class="example-full-width">
         <mat-label>Apellido materno</mat-label>
 
-        <input matInput placeholder="Apellido materno" value="" />
+        <input
+          matInput
+          placeholder="Apellido materno"
+          id="apellidoMaterno"
+          formControlName="apellidoMaterno"
+        />
+        <mat-error
+          *ngIf="addVenta.controls['apellidoMaterno'].hasError('required')"
+        >
+          El apellido materno <strong>requerido</strong>
+        </mat-error>
       </mat-form-field>
     </mat-grid-tile>
   </mat-grid-list>
   <mat-grid-list cols="1" rowHeight="40px">
-    <mat-grid-tile
-      [colspan]="1"
-      [rowspan]="1"
-      class="sub-title "
-    >
-    <div class="title">
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="sub-title">
+      <div class="title">
         <h4>Agregar producto</h4>
-    </div>
+      </div>
     </mat-grid-tile>
   </mat-grid-list>
-  <hr>
+  <hr />
   <mat-grid-list cols="5" rowHeight="100px">
     <mat-grid-tile
       [colspan]="1"
       [rowspan]="1"
       [style.background-color]="'#FFF'"
     >
-      <mat-form-field appearance="fill">
+      <mat-form-field>
         <mat-label>Sku</mat-label>
 
-        <input matInput placeholder="sku" value="" />
+        <input
+          matInput
+          placeholder="sku"
+          id="sku"
+          placeholder="sku"
+          formControlName="sku"
+        />
+        <mat-error *ngIf="addVenta.controls['sku'].hasError('required')">
+          El sku <strong>requerido</strong>
+        </mat-error>
       </mat-form-field>
     </mat-grid-tile>
 
@@ -149,7 +202,23 @@
       <mat-form-field class="example-full-width">
         <mat-label>Descripción</mat-label>
 
-        <input matInput placeholder="descripcion" value="" />
+        <input
+          matInput
+          placeholder="descripcion"
+          id="descripcion"
+          placeholder="descripcion"
+          formControlName="descripcion"
+        />
+        <mat-error
+          *ngIf="
+            addVenta.controls['descripcion'].invalid &&
+            (addVenta.controls['descripcion'].dirty ||
+              addVenta.controls['descripcion'].touched) && addVenta.controls['descripcion'].hasError('required')
+          "
+        >
+        La descripción es <strong>requerida</strong>
+        </mat-error>
+        
       </mat-form-field>
     </mat-grid-tile>
 
@@ -160,8 +229,16 @@
     >
       <button
         mat-mini-fab
+        type="button"
         color="primary"
         aria-label="Example icon button with a delete icon"
+        (click)="addDetalleProducto()"
+        class="button-acction"
+
+        [disabled] = "addVenta.controls['sku'].hasError('required') || 
+        addVenta.controls['descripcion'].hasError('required') ||
+        addVenta.controls['precio'].hasError('required')
+         "
       >
         +
       </button>
@@ -177,7 +254,16 @@
       <mat-form-field>
         <mat-label>Precio</mat-label>
 
-        <input matInput placeholder="precio" value="" />
+        <input
+          matInput
+          placeholder="precio"
+          id="precio"
+          placeholder="precio"
+          formControlName="precio"
+        />
+        <mat-error *ngIf="addVenta.controls['precio'].hasError('required')">
+          El precio es <strong>requerido</strong>
+        </mat-error>
       </mat-form-field>
     </mat-grid-tile>
 
@@ -189,7 +275,16 @@
       <mat-form-field class="example-full-width">
         <mat-label>Cantidad</mat-label>
 
-        <input matInput placeholder="cantidad" value="" />
+        <input
+          matInput
+          placeholder="cantidad"
+          id="cantidad"
+          placeholder="cantidad"
+          formControlName="cantidad"
+        />
+        <mat-error *ngIf="addVenta.controls['cantidad'].hasError('required')">
+          La cantidad es <strong>requerida</strong>
+        </mat-error>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile
@@ -207,6 +302,16 @@
     </mat-grid-tile>
   </mat-grid-list>
 
+  
+  <mat-grid-list cols="1" rowHeight="40px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="sub-title">
+      <div class="title">
+        <h4>Productos</h4>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <hr />
+  
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
@@ -214,80 +319,151 @@
     <!-- Position Column -->
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef>No.</th>
-      <td mat-cell *matCellDef="let element">{{ element.position }}</td>
-      <td mat-footer-cell *matFooterCellDef> Total </td>
+      <td mat-cell *matCellDef="let detallev">{{ detallev.producto.sku }}</td>
+      <td mat-footer-cell *matFooterCellDef>SubTotal</td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="descripcion">
       <th mat-header-cell *matHeaderCellDef>Descripción</th>
-      <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
-      <td mat-footer-cell *matFooterCellDef> </td>
-
+      <td mat-cell *matCellDef="let detallev">
+        {{ detallev.producto.descripcion }}
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="preciou">
       <th mat-header-cell *matHeaderCellDef>Precio unitario(sin igv)</th>
-      <td mat-cell *matCellDef="let element">{{ element.preciou }}</td>
-      <td mat-footer-cell *matFooterCellDef> </td>
-
+      <td mat-cell *matCellDef="let detallev">
+        {{ detallev.precio | number: "1.2-2" }}
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="cantidad">
       <th mat-header-cell *matHeaderCellDef>Cantidad</th>
-      <td mat-cell *matCellDef="let element">{{ element.cantidad }}</td>
-      <td mat-footer-cell *matFooterCellDef> </td>
-
+      <td mat-cell *matCellDef="let detallev">{{ detallev.cantidad }}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="unidades">
       <th mat-header-cell *matHeaderCellDef>Unidades</th>
-      <td mat-cell *matCellDef="let element">{{ element.unidades }}</td>
-      <td mat-footer-cell *matFooterCellDef> </td>
-
+      <td mat-cell *matCellDef="let detallev"></td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="importe">
       <th mat-header-cell *matHeaderCellDef>Importe</th>
-      <td mat-cell *matCellDef="let element">{{ element.importe }}</td>
-      <td mat-footer-cell *matFooterCellDef> 500 </td>
+      <td mat-cell *matCellDef="let detallev">
+        {{ detallev.cantidad * detallev.precio | number: "1.2-2" }}
+      </td>
+      <td mat-footer-cell *matFooterCellDef>{{ subtotalfooter }}</td>
     </ng-container>
 
     <ng-container matColumnDef="accion">
       <th mat-header-cell *matHeaderCellDef>Acción</th>
-      <td mat-cell *matCellDef="let element">{{ element.accion }}</td>
-      <td mat-footer-cell *matFooterCellDef> </td>
+      <td mat-cell *matCellDef="let detallev"></td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <!-- empty footer row-->
+    <ng-container matColumnDef="igv">
+      <td mat-footer-cell *matFooterCellDef>IGV</td>
+    </ng-container>
+    <ng-container matColumnDef="emptyFooter1">
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="emptyFooter2">
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="emptyFooter3">
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="emptyFooter4">
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="emptyFooter5">
+      <td mat-footer-cell *matFooterCellDef>100</td>
+    </ng-container>
+
+    <ng-container matColumnDef="amounts">
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <!-- empty footer row-->
+    <ng-container matColumnDef="total">
+      <td mat-footer-cell *matFooterCellDef>Total</td>
+    </ng-container>
+    <ng-container matColumnDef="emptyFooter6">
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="emptyFooter7">
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="emptyFooter8">
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="emptyFooter9">
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="emptyFooter10">
+      <td mat-footer-cell *matFooterCellDef>{{ totalfooter }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="amountt">
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-
+    <tr mat-footer-row *matFooterRowDef="displayedVatColumns"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedTotalColumns"></tr>
   </table>
 
   <mat-grid-list cols="3" rowHeight="100px">
-    <mat-grid-tile
-    [colspan]="1"
-    [rowspan]="1"
-    [style.background-color]="'#FFF'"
-  >
-  </mat-grid-tile>
-      
     <mat-grid-tile
       [colspan]="1"
       [rowspan]="1"
       [style.background-color]="'#FFF'"
     >
-    <button mat-raised-button color="primary">Agregar</button>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="1"
+      [rowspan]="1"
+      [style.background-color]="'#FFF'"
+    >
+      <button 
+      type="submit" mat-raised-button color="primary"
+      [disabled] = "addVenta.controls['fechaCreacion'].hasError('required') || 
+        addVenta.controls['tipoDocumento'].hasError('required') ||
+        addVenta.controls['numeroDocumento'].hasError('required') || 
+        addVenta.controls['nombres'].hasError('required') ||
+        addVenta.controls['apellidoPaterno'].hasError('required') ||
+        addVenta.controls['apellidoMaterno'].hasError('required') || 
+        dataSource.source._value.length === 0 "
+      class="button-acction"
+      >
+      
+      Agregar</button>
     </mat-grid-tile>
     <mat-grid-tile
-    [colspan]="1"
-    [rowspan]="1"
-    [style.background-color]="'#FFF'"
-  >
-  <button mat-raised-button color="warn">Cancelar</button>
-  </mat-grid-tile>
+      [colspan]="1"
+      [rowspan]="1"
+      [style.background-color]="'#FFF'"
+    >
+      <button mat-raised-button color="warn">Cancelar</button>
+    </mat-grid-tile>
   </mat-grid-list>
 </form>
