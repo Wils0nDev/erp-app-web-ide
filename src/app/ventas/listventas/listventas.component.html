@@ -1,0 +1,169 @@
+<mat-grid-list cols="1" rowHeight="40px">
+  <mat-grid-tile
+    [colspan]="1"
+    [rowspan]="1"
+    [style.background-color]="'#ccc'"
+  >
+    <div class="title">
+      <h4>Listar ventas</h4>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+<form id="formFiltro" [formGroup]="filterForm" (ngSubmit)="Filtrar()">
+  <mat-grid-list cols="1" rowHeight="40px">
+    <mat-grid-tile
+      [colspan]="1"
+      [rowspan]="1"
+      [style.background-color]="'rgb(63, 81, 181)'"
+    >
+      <div class="sub-title">
+        <h4>Filtrar ventas</h4>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="5" rowHeight="70px">
+    <mat-grid-tile
+      [colspan]="1"
+      [rowspan]="1"
+      [style.background-color]="'#FFF'"
+    >
+      <mat-form-field class="example-full-width">
+        <mat-label>Fecha de inicio</mat-label>
+        <input type="text" matInput [matDatepicker]="picker" id="fechaInicio"  formControlName="fechaInicio" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan]="1"
+      [rowspan]="1"
+      [style.background-color]="'#FFF'"
+    >
+      <mat-form-field class="example-full-width">
+        <mat-label>Fecha de fin</mat-label>
+        <input matInput [matDatepicker]="pickerfin" id="fechaFin" formControlName="fechaFin"/>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #pickerfin></mat-datepicker>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="1"
+      [rowspan]="1"
+      [style.background-color]="'#FFF'"
+    >
+      <mat-form-field class="example-full-width">
+        <mat-label>Cliente</mat-label>
+
+        <input matInput placeholder="" />
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="1"
+      [rowspan]="1"
+      [style.background-color]="'#FFF'"
+    >
+      <mat-form-field class="example-full-width">
+        <mat-label>Estado</mat-label>
+        <mat-select id="stadoPago" formControlName="stadoPago">
+          <mat-option [value]="1"> PENDIENTE </mat-option>
+          <mat-option [value]="2"> CONFIRMADO </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="1"
+      [rowspan]="1"
+      [style.background-color]="'#FFF'"
+    >
+      <mat-form-field class="example-full-width">
+        <mat-label>Tarn. Venta</mat-label>
+
+        <input matInput placeholder="" id="transactVenta" formControlName="transactVenta" />
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="1" rowHeight="50px">
+    <mat-grid-tile
+      [colspan]="1"
+      [rowspan]="1"
+      id="buttonFiltro"
+      [style.background-color]="'#FFF'"
+    >
+      <button type="submit" mat-raised-button color="primary">Buscar</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
+<mat-grid-list cols="1" rowHeight="50px" class="inputSerch-list">
+  <mat-grid-tile
+    [colspan]="1"
+    [rowspan]="1"
+    id="inputSearch"
+    [style.background-color]="'#FFF'"
+  >
+    <mat-form-field class="example-full-width">
+      <mat-label>Buscar</mat-label>
+
+      <input matInput placeholder="" />
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="transaccin_venta">
+    <th mat-header-cell *matHeaderCellDef>TRANSACCION DE LA VENTA</th>
+    <td mat-cell *matCellDef="let element">{{ element.codigoVenta }}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="fecha_hora">
+    <th mat-header-cell *matHeaderCellDef>FECHA Y HORA</th>
+    <td mat-cell *matCellDef="let element">{{ element.fechaCreacion }}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="cliente">
+    <th mat-header-cell *matHeaderCellDef>CLIENTE</th>
+    <td mat-cell *matCellDef="let element">{{ element.nombres }}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="vendedor">
+    <th mat-header-cell *matHeaderCellDef>VENDEDOR</th>
+    <td mat-cell *matCellDef="let element">{{ element.datosVendedor }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="importe_total">
+    <th mat-header-cell *matHeaderCellDef>IMPORTE TOTAL</th>
+    <td mat-cell *matCellDef="let element">{{ element.totalVenta }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="estadov">
+    <th mat-header-cell *matHeaderCellDef>ESTADO</th>
+    <th></th>
+    <td mat-cell *matCellDef="let element">{{ element.estadoPago }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef>ACCION</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button id="button-action-table" [matMenuTriggerFor]="menu" mat-raised-button color="primary">
+        Acción
+        <span class="mat-expansion-indicator ng-tns-c244-22 ng-trigger ng-trigger-indicatorRotate ng-star-inserted" style="transform: rotate(0deg);padding-left: 10px;"></span>
+            
+        </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Ver</button>
+        <button mat-menu-item>Editar</button>
+        <button mat-menu-item>Eliminar</button>
+      </mat-menu>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

@@ -66,3 +66,46 @@
     color: #FFF;
 
   }
+
+  .mat-expansion-panel {
+    background: #060606;
+    color: #FFF;
+    border-bottom: 1px solid;
+}
+
+.mat-list-base .mat-list-item {
+  color: #000;
+  transition : background-color .2s;
+
+}
+
+.mat-list-base .mat-list-item:hover {
+  background-color: #000;
+  color : #fff;
+}
+
+.mat-drawer {
+  color: rgba(247, 247, 247, 0.87);
+}
+
+.mat-expansion-indicator::after {
+  color: #FFF !important;
+}
+
+.mat-expansion-panel-content .mat-expansion-panel-body{
+    padding: 0px;
+}
+.mat-list-base[dense] .mat-list-item .mat-list-item-content{
+
+  padding: 0px;
+}
+
+
+
+.mat-nav-list.mat-list-base.ng-star-inserted {
+  padding: 0px  !important;
+  border-bottom: 1px solid !important;
+  width: 100% !important;
+}
+
+

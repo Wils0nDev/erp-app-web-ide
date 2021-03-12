@@ -12,7 +12,7 @@ const routes: Routes = [
     path: 'admin',
     //lazy loading: renderizando nuestros componentes
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
-  },
+  }
 ];
 
 @NgModule({

@@ -51,7 +51,6 @@ export class AdminComponent implements OnInit {
     )
     .subscribe((response) => { 
       this.modulos = response.objeto
-      console.log(this.modulos)
     })
     
   }

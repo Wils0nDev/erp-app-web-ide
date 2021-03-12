@@ -1,4 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~font-awesome/css/font-awesome.min.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body{
+    font-family: Roboto, "Helvetica Neue", sans-serif  !important;
+}
+
+
+#buttonFiltro > .mat-figure {
+    justify-content: left !important;
+    margin-left: 20px  !important;
+}
+
+#inputSearch > .mat-figure {
+    justify-content: right !important;
+    margin-right: 20px  !important;
+}
+
+.mat-expansion-indicator::after {
+    color: #fff;
+}
+
+.mat-expansion-panel-body {
+    padding: 0 !important;
+}
+
+.mat-expansion-panel-content {
+  
+    background-color: #FFF  !important;
+  }

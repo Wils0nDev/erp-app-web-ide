@@ -12,7 +12,8 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json /app/package.json
 RUN npm install
 RUN npm install -g @angular/cli@11.2.1
-
+RUN npm install font-awesome
+RUN npm install --save sweetalert2
 # add apps
 COPY . /app/
 

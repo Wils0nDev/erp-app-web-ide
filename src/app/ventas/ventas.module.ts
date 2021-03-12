@@ -6,9 +6,11 @@ import { VentasComponent } from './ventas.component';
 import { AddventaComponent } from './addventa/addventa.component';
 import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NginitDirective } from '../utils/nginit.directive';
+import { ListventasComponent } from './listventas/listventas.component';
 
 @NgModule({
-  declarations: [VentasComponent, AddventaComponent],
+  declarations: [VentasComponent, AddventaComponent,NginitDirective, ListventasComponent  ],
   imports: [
     CommonModule,
     VentasRoutingModule,

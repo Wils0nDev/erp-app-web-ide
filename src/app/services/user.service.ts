@@ -16,6 +16,7 @@ export class UserService {
   public idenitity! : string | null;
   public token! : string | null;
   public sucursales! : string | null ;
+  public datos! : string ;
   constructor(private httpClient: HttpClient) {}
 
   signUp(userLogin: User): Observable<any> {
@@ -68,6 +69,17 @@ export class UserService {
       this.sucursales = null
     }
     return this.sucursales;
+  }
+
+  geDatos(){
+    let datos = localStorage.getItem('datosUser');
+    
+    if(datos != 'undefinded' && datos != null){
+      this.datos = datos
+    }else{
+      this.datos = ''
+    }
+    return this.datos;
   }
 
   logout(){
