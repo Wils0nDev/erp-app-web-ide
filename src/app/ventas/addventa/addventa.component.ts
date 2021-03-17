@@ -78,6 +78,8 @@ export class AddventaComponent implements OnInit {
   public user! : User
 
   public item! : number
+  public hora! : Date
+  public horav! : string
 
   constructor(
     private _formatfecha: Formatfecha,
@@ -87,7 +89,10 @@ export class AddventaComponent implements OnInit {
     private _productoService: ProductoService,
     private _userService : UserService
   ) {
-    this.cliente = new Cliente('', null, '', '', '');
+
+    this.hora = new Date
+    this.horav =  this.hora.getHours()+':'+this.hora.getMinutes() + ':' + this.hora.getSeconds()
+    this.cliente = new Cliente(0,'', null, '', '', '');
     this.producto = new Producto('', '', 'unidades');
     this.user = new User(0,'','',0,0,'','','','','','')
 
@@ -98,7 +103,7 @@ export class AddventaComponent implements OnInit {
       this.producto,
       'unidades'
     );
-    this.venta = new Venta(
+    this.venta = new Venta(0,
       '',
       null,
       null,
@@ -123,7 +128,7 @@ export class AddventaComponent implements OnInit {
     this.venta.montoTotal = 0;
     this.venta.subTotal = 0;
     this.datosUser = JSON.parse(this._userService.geDatos())
-    console.log(this.datosUser)
+    
     this.ventaValidate();
   }
 
@@ -323,7 +328,7 @@ export class AddventaComponent implements OnInit {
 
   onSubmit(formDirective: FormGroupDirective) {
     //Cliente
-    this.cliente = new Cliente(
+    this.cliente = new Cliente(0,
       this.addVenta.value.numeroDocumento,
       this.addVenta.value.tipoDocumento,
       this.addVenta.value.nombres,
@@ -334,9 +339,9 @@ export class AddventaComponent implements OnInit {
     //Venta
     let fechaVenta = this._formatfecha.transform(
       this.addVenta.value.fechaCreacion
-    );
+    ) +" "+ this.horav ;
 
-    this.venta = new Venta(
+    this.venta = new Venta(0,
       fechaVenta,
       1,
       1,
@@ -383,7 +388,7 @@ export class AddventaComponent implements OnInit {
     this.subtotalfooter = 0;
     this.totalfooter = 0;
     this.addVenta.get('cantidad')?.reset('1');
-    this.venta = new Venta(
+    this.venta = new Venta(0,
       '',
       null,
       null,

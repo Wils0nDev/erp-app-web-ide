@@ -41,10 +41,10 @@
       [style.background-color]="'#FFF'"
     >
       <mat-form-field class="example-full-width">
-        <mat-label>Fecha de fin</mat-label>
-        <input matInput [matDatepicker]="pickerfin" id="fechaFin" formControlName="fechaFin"/>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #pickerfin></mat-datepicker>
+        <mat-label>Fecha de inicio</mat-label>
+        <input type="text" matInput [matDatepicker]="pickerf" id="fechaInicio"  formControlName="fechaFin" />
+        <mat-datepicker-toggle matSuffix [for]="pickerf"></mat-datepicker-toggle>
+        <mat-datepicker #pickerf></mat-datepicker>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile
@@ -55,7 +55,7 @@
       <mat-form-field class="example-full-width">
         <mat-label>Cliente</mat-label>
 
-        <input matInput placeholder="" />
+        <input matInput placeholder="" formControlName="datosCliente"/>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile
@@ -128,7 +128,7 @@
   <!-- Weight Column -->
   <ng-container matColumnDef="cliente">
     <th mat-header-cell *matHeaderCellDef>CLIENTE</th>
-    <td mat-cell *matCellDef="let element">{{ element.nombres }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.datosCliente }}</td>
   </ng-container>
 
   <!-- Symbol Column -->
@@ -151,16 +151,7 @@
   <ng-container matColumnDef="acciones">
     <th mat-header-cell *matHeaderCellDef>ACCION</th>
     <td mat-cell *matCellDef="let element">
-      <button mat-button id="button-action-table" [matMenuTriggerFor]="menu" mat-raised-button color="primary">
-        Acción
-        <span class="mat-expansion-indicator ng-tns-c244-22 ng-trigger ng-trigger-indicatorRotate ng-star-inserted" style="transform: rotate(0deg);padding-left: 10px;"></span>
-            
-        </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>Ver</button>
-        <button mat-menu-item>Editar</button>
-        <button mat-menu-item>Eliminar</button>
-      </mat-menu>
+     <ide-action-table [venta]="element"  (view)="onVerVenta($event)" (edit)="onEditVenta($event)" ></ide-action-table>
     </td>
   </ng-container>
 

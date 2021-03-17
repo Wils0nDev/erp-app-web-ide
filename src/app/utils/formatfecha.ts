@@ -13,6 +13,6 @@ export class Formatfecha  extends DatePipe implements PipeTransform {
 
     transform(value: any, args?: any): any {
         ///MMM/dd/yyyy 
-        return super.transform(value, "MM/dd/yyyy  h:mm:ss");
+        return super.transform(value, "dd/MM/yyyy");
     }
 }

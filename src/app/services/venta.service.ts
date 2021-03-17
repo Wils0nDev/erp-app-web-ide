@@ -43,6 +43,27 @@ export class VentaService {
        .pipe(catchError(this.mensajeError));
   }
 
+
+  updateVenta(venta : Venta):Observable<any>{
+    //(gethash)  ?    userLogin.gethash = gethash : null;
+
+    let json = JSON.stringify(venta);
+    let params = json;
+    let headers = new HttpHeaders(
+      { 'Content-Type': 'application/json',
+        'Authorization': JSON.parse(this.userService.getToken() || '')
+     
+     });
+
+    return this.httpClient
+
+      //http://172.16.11.123:4200/administracion/login/ValidarCredenciales
+      .post<Venta>('http://172.16.11.123:4040/sale/EditarVenta', params,{ headers: headers})
+
+      //.get<any>('assets/api/user/login.json')
+      .pipe(catchError(this.mensajeError));
+ }
+
   getVentas(filtroVenta : any) : Observable<any>{
 
     var json = JSON.stringify(filtroVenta)

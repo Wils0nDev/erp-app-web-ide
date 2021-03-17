@@ -1,0 +1,10 @@
+<button mat-button id="button-action-table" [matMenuTriggerFor]="menu" mat-raised-button color="primary">
+    Acción
+    <span class="mat-expansion-indicator ng-tns-c244-22 ng-trigger ng-trigger-indicatorRotate ng-star-inserted" style="transform: rotate(0deg);padding-left: 10px;"></span>
+        
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="viewVenta(venta)">Ver</button>
+    <button mat-menu-item (click)="editVenta(venta)">Editar</button>
+    <button mat-menu-item>Eliminar</button>
+  </mat-menu>

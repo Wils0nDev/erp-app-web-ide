@@ -1,0 +1,76 @@
+.title {
+    flex-grow: 1;
+    flex-basis: 100%;
+    padding: 10px;
+    margin-left: 20px;
+    color: #3f51b5;
+    text-shadow: 1px 1px 0px #fff;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 14px;
+  }
+  
+  .sub-title > h4 {
+    color: #fff;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  #editForm {
+    padding: 20px;
+    padding-right: 20px;
+  }
+  
+  .mat-grid-list {
+    display: block;
+    position: relative;
+    border-left: 1px solid #cecece;
+    border-right: 1px solid #cecece;
+  }
+  
+  .mat-form-field.form-input {
+    margin-top: 30px;
+  }
+  
+  .mat-grid-tile {
+    border-bottom: 1px solid #cecece;
+  }
+  .mat-grid-tile.no-border {
+    border-bottom: none;
+  }
+  
+  .mat-grid-list.border-list {
+    border-bottom: 1px solid #cecece;
+  }
+  
+  
+  table {
+    width: 100%;
+  }
+  
+  tr.mat-header-row {
+    height: 56px;
+    background-color: #3f51b5;
+    color: #fff;
+  }
+  .mat-header-cell {
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .mat-footer {
+    border: 1px solid #000;
+  }
+  
+  tr.mat-footer-row {
+    font-weight: bold;
+    background-color: #ccc;
+    height: 35px;
+  }
+  
+  .mat-footer-cell {
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  

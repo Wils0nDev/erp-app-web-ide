@@ -5,6 +5,7 @@ import { User } from "./user";
 export class Venta {
 
     constructor(
+        public codigoVenta : number,
         public fechaCreacion: string,
         public codigoSucursal: number | null ,
         //public user : User,
